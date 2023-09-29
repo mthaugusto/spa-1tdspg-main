@@ -1,0 +1,77 @@
+.container {
+
+    $backColor: rgba(0,0,0,0.8);
+    $textColor: #fff;
+    $familiaDaFonte: Arial, Helvetica, sans-serif;
+    $tamanhoDaFonte: 1.5rem;
+    $arredondamentoDaBorda: 5px;
+    $bordaPadrao: solid 2px #ccc;
+    $visibilida: block;
+
+    background-color: $backColor;
+    color: $textColor;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+
+    h1{
+        text-align: center;
+    }
+
+    @mixin formInput($largura, $altura, $margem){
+
+        input{
+            display: $visibilida;
+            width: $largura;
+            height: $altura;
+            margin: $margem;
+            border-radius: $arredondamentoDaBorda;
+            border: $bordaPadrao;
+            padding: 0 10px;
+        }
+
+    }
+
+    form{
+        width: 85%;
+        margin: 0 auto;
+        div{
+            margin: 1.5% 0;
+            @include formInput(70%, 40px, 0 auto 1% auto);    
+               
+            label {
+                display: $visibilida;
+                width: 70%;
+                margin: 0 auto;
+            }
+
+            button {
+                border: $bordaPadrao;
+                border-radius: $arredondamentoDaBorda;
+                background-color: #008000;
+                width: 40%;
+                height: 60px;
+                margin: 0 auto;
+                display: $visibilida;
+                color: $textColor;
+                font-size: $tamanhoDaFonte;
+                font-weight: bold;
+                transition: background-color 300ms, color 300ms;
+
+                &:hover {
+                    background-color: #707a70;
+                    color: #0c0a0a;
+                    
+                }
+
+                &:active {
+                    background-color: #ce1111;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}

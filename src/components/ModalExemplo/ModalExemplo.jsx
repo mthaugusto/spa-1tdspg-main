@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from "./ModalExemplo.module.css";
+import "./ModalInserir.scss"
 
 export default function ModalExemplo(props) {
   document.title = "CADASTRO";
@@ -18,17 +18,17 @@ export default function ModalExemplo(props) {
     })
     .catch((error) => console.log(error));
 
-    const [produto, setProduto] = useState({
-      id: novoId,
-      nome:"",
-      preco:"",
-      desc:"",
-      img:""
-    });
+  const [produto, setProduto] = useState({
+    id: novoId,
+    nome: "",
+    preco: "",
+    desc: "",
+    img: "",
+  });
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     e.preventDefault();
-    
+
     // const{name,value} = e.target;
 
     // if(name == "nome"){
@@ -38,35 +38,33 @@ export default function ModalExemplo(props) {
     // }else if(name == "desc"){
     //   setProduto({"nome": "", "preco": "","desc": value});
     // }
-    
-    const{name,value} = e.target;
-    setProduto({...produto,[name]:value});
-  }
 
+    const { name, value } = e.target;
+    setProduto({ ...produto, [name]: value });
+  };
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
-    fetch("http://localhost:5000/produtos",{
-      method:'POST',
-      headers:{
-        "Content-Type":"application/json",
+
+    fetch("http://localhost:5000/produtos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(produto)
+      body: JSON.stringify(produto),
     })
-    .then((response)=> {
+      .then((response) => {
         console.log("Status da requisição HTTP : " + response.status);
         return response.json();
       })
-    .then((data)=> console.log(data))
-    .catch(error => console.log(error));
-    props.setOpen(false)
-
-  }
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+    props.setOpen(false);
+  };
 
   if (props.open) {
     return (
-      <div className={style.container}>
+      <div className="container">
         <h1>Cadastrar Produto</h1>
         <div>
           <form onSubmit={handleSubmit}>
